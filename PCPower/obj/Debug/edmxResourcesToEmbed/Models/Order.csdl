@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PCPBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__fk_Clien__34C8D9D1" FromRole="Client" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Repair_Id" Type="Int32" />
+    <Property Name="fk_Shop_Id" Type="Int32" />
+    <Property Name="fk_Receipt_Id" Type="Int32" />
+    <Property Name="fk_Client_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Part_Id" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Orders__fk_Clien__34C8D9D1" FromRole="Orders" ToRole="Client" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__Orders__fk_Part___300424B4" FromRole="Orders" ToRole="Part" />
+    <NavigationProperty Name="Receipt" Relationship="Self.FK__Orders__fk_Recei__31EC6D26" FromRole="Orders" ToRole="Receipt" />
+    <NavigationProperty Name="Repair" Relationship="Self.FK__Orders__fk_Repai__37A5467C" FromRole="Orders" ToRole="Repair" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK__Orders__fk_Shop___2F10007B" FromRole="Orders" ToRole="Shop" />
+    <NavigationProperty Name="Receipts" Relationship="Self.FK__Receipt__fk_Orde__30F848ED" FromRole="Orders" ToRole="Receipt" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Specification" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Production_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__fk_Part___300424B4" FromRole="Part" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Time" Type="Time" Precision="7" />
+    <Property Name="Total" Type="Double" />
+    <Property Name="fk_Order_Id" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__fk_Recei__31EC6D26" FromRole="Receipt" ToRole="Orders" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Receipt__fk_Orde__30F848ED" FromRole="Receipt" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" />
+    <Property Name="Machine_number" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__fk_Repai__37A5467C" FromRole="Repair" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Post" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone_NR" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__fk_Shop___2F10007B" FromRole="Shop" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <Association Name="FK__Orders__fk_Clien__34C8D9D1">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="fk_Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__fk_Part___300424B4">
+    <End Role="Part" Type="Self.Part" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="fk_Part_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__fk_Recei__31EC6D26">
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="fk_Receipt_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__fk_Repai__37A5467C">
+    <End Role="Repair" Type="Self.Repair" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Repair">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="fk_Repair_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Orders__fk_Shop___2F10007B">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="0..1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="fk_Shop_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Receipt__fk_Orde__30F848ED">
+    <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="fk_Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PCPBaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Parts" EntityType="Self.Part" />
+    <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+    <EntitySet Name="Repairs" EntityType="Self.Repair" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Orders__fk_Clien__34C8D9D1" Association="Self.FK__Orders__fk_Clien__34C8D9D1">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__fk_Part___300424B4" Association="Self.FK__Orders__fk_Part___300424B4">
+      <End Role="Part" EntitySet="Parts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__fk_Recei__31EC6D26" Association="Self.FK__Orders__fk_Recei__31EC6D26">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__fk_Repai__37A5467C" Association="Self.FK__Orders__fk_Repai__37A5467C">
+      <End Role="Repair" EntitySet="Repairs" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Orders__fk_Shop___2F10007B" Association="Self.FK__Orders__fk_Shop___2F10007B">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Receipt__fk_Orde__30F848ED" Association="Self.FK__Receipt__fk_Orde__30F848ED">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

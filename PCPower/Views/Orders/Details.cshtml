@@ -1,0 +1,58 @@
+﻿@model PCPower.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Part.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Part.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Receipt.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Receipt.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repair.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repair.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

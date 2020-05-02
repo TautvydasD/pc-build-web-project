@@ -20,6 +20,11 @@ namespace PCPower.Controllers
             return View();
         }
 
+        public ActionResult Order()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

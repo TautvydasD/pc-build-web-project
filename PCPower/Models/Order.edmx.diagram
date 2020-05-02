@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="afb6e7b4410f4ac8a46950fca4b9c1ca" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="PCPBaseModel.Client" Width="1.5" PointX="0.875" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.Order" Width="1.5" PointX="6.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.Part" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.Receipt" Width="1.5" PointX="6" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.Repair" Width="1.5" PointX="2.125" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.Shop" Width="1.5" PointX="2.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPBaseModel.User" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="PCPBaseModel.FK__Orders__fk_Clien__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPBaseModel.FK__Orders__fk_Part___300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPBaseModel.FK__Orders__fk_Recei__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPBaseModel.FK__Orders__fk_Repai__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPBaseModel.FK__Orders__fk_Shop___2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPBaseModel.FK__Receipt__fk_Orde__30F848ED" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
