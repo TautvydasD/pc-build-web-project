@@ -1,0 +1,11 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+<input type="button" value="Admin" onclick="location.href='@Url.Action("Index", "Administrator")'" />
+<input type="button" value="User" onclick="location.href='@Url.Action("Index", "User")'" />
+<input type="button" value="Worker" onclick="location.href='@Url.Action("Index", "Worker")'" />
