@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PCPowerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Administr__fk_Us__4D94879B" FromRole="Administrator" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Build">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Computer_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Part_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Computer" Relationship="Self.FK__Build__fk_Comput__60A75C0F" FromRole="Build" ToRole="Computer" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__Build__fk_Part_I__619B8048" FromRole="Build" ToRole="Part" />
+  </EntityType>
+  <EntityType Name="Chat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK__Message__fk_Chat__5070F446" FromRole="Chat" ToRole="Message" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Client__fk_User___4E88ABD4" FromRole="Client" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Computer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_User_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Builds" Relationship="Self.FK__Build__fk_Comput__60A75C0F" FromRole="Computer" ToRole="Build" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Computer__fk_Use__5441852A" FromRole="Computer" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fk_Chat_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Sender_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Reciever_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Chat" Relationship="Self.FK__Message__fk_Chat__5070F446" FromRole="Message" ToRole="Chat" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Message__fk_Reci__52593CB8" FromRole="Message" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__Message__fk_Send__5165187F" FromRole="Message" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Shop_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Receipt_Id" Type="Int32" />
+    <Property Name="fk_Client_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Receipt" Relationship="Self.FK__Order__fk_Receip__5812160E" FromRole="Order" ToRole="Receipt" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK__Order__fk_Shop_I__571DF1D5" FromRole="Order" ToRole="Shop" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK__Part__fk_Order_I__5CD6CB2B" FromRole="Order" ToRole="Part" />
+    <NavigationProperty Name="Receipts" Relationship="Self.FK__Receipt__fk_Orde__5DCAEF64" FromRole="Order" ToRole="Receipt" />
+    <NavigationProperty Name="Repairs" Relationship="Self.FK__Repair__fk_Order__628FA481" FromRole="Order" ToRole="Repair" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Specification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="ProductionDate" Type="DateTime" Precision="0" />
+    <Property Name="fk_Warehouse_Id" Type="Int32" />
+    <Property Name="fk_Transfer_Id" Type="Int32" />
+    <Property Name="fk_Order_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Builds" Relationship="Self.FK__Build__fk_Part_I__619B8048" FromRole="Part" ToRole="Build" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Part__fk_Order_I__5CD6CB2B" FromRole="Part" ToRole="Order" />
+    <NavigationProperty Name="Transfer" Relationship="Self.FK__Part__fk_Transfe__5BE2A6F2" FromRole="Part" ToRole="Transfer" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Part__fk_Warehou__5AEE82B9" FromRole="Part" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Receipt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="Sum" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fk_Order_Id" Type="Int32" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__fk_Receip__5812160E" FromRole="Receipt" ToRole="Order" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Receipt__fk_Orde__5DCAEF64" FromRole="Receipt" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Repair">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeviceID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="fk_Order_Id" Type="Int32" Nullable="false" />
+    <Property Name="fk_Worker_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK__Repair__fk_Order__628FA481" FromRole="Repair" ToRole="Order" />
+    <NavigationProperty Name="Worker" Relationship="Self.FK__Repair__fk_Worke__6383C8BA" FromRole="Repair" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Post" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Order__fk_Shop_I__571DF1D5" FromRole="Shop" ToRole="Order" />
+    <NavigationProperty Name="Transfers" Relationship="Self.FK__Transfer__fk_Sho__6477ECF3" FromRole="Shop" ToRole="Transfer" />
+  </EntityType>
+  <EntityType Name="Transfer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PickupDate" Type="DateTime" Precision="0" />
+    <Property Name="UnloadingDate" Type="DateTime" Precision="0" />
+    <Property Name="fk_Shop_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK__Part__fk_Transfe__5BE2A6F2" FromRole="Transfer" ToRole="Part" />
+    <NavigationProperty Name="Shop" Relationship="Self.FK__Transfer__fk_Sho__6477ECF3" FromRole="Transfer" ToRole="Shop" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Permission" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Administrators" Relationship="Self.FK__Administr__fk_Us__4D94879B" FromRole="User" ToRole="Administrator" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__Client__fk_User___4E88ABD4" FromRole="User" ToRole="Client" />
+    <NavigationProperty Name="Computers" Relationship="Self.FK__Computer__fk_Use__5441852A" FromRole="User" ToRole="Computer" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK__Message__fk_Reci__52593CB8" FromRole="User" ToRole="Message" />
+    <NavigationProperty Name="Messages1" Relationship="Self.FK__Message__fk_Send__5165187F" FromRole="User" ToRole="Message" />
+    <NavigationProperty Name="Workers" Relationship="Self.FK__Worker__fk_User___656C112C" FromRole="User" ToRole="Worker" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PartsCount" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK__Part__fk_Warehou__5AEE82B9" FromRole="Warehouse" ToRole="Part" />
+  </EntityType>
+  <EntityType Name="Worker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="fk_User_Id" Type="Int32" />
+    <NavigationProperty Name="Repairs" Relationship="Self.FK__Repair__fk_Worke__6383C8BA" FromRole="Worker" ToRole="Repair" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Worker__fk_User___656C112C" FromRole="Worker" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Administr__fk_Us__4D94879B">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="fk_User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Build__fk_Comput__60A75C0F">
+    <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
+    <End Role="Build" Type="Self.Build" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Computer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Build">
+        <PropertyRef Name="fk_Computer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Build__fk_Part_I__619B8048">
+    <End Role="Part" Type="Self.Part" Multiplicity="1" />
+    <End Role="Build" Type="Self.Build" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Build">
+        <PropertyRef Name="fk_Part_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Message__fk_Chat__5070F446">
+    <End Role="Chat" Type="Self.Chat" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chat">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="fk_Chat_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Client__fk_User___4E88ABD4">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="fk_User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Computer__fk_Use__5441852A">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Computer">
+        <PropertyRef Name="fk_User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Message__fk_Reci__52593CB8">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="fk_Reciever_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Message__fk_Send__5165187F">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="fk_Sender_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__fk_Receip__5812160E">
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Receipt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="fk_Receipt_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Order__fk_Shop_I__571DF1D5">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="fk_Shop_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Part__fk_Order_I__5CD6CB2B">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="fk_Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Receipt__fk_Orde__5DCAEF64">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Receipt">
+        <PropertyRef Name="fk_Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Repair__fk_Order__628FA481">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Repair">
+        <PropertyRef Name="fk_Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Part__fk_Transfe__5BE2A6F2">
+    <End Role="Transfer" Type="Self.Transfer" Multiplicity="0..1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transfer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="fk_Transfer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Part__fk_Warehou__5AEE82B9">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+    <End Role="Part" Type="Self.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Part">
+        <PropertyRef Name="fk_Warehouse_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Repair__fk_Worke__6383C8BA">
+    <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+    <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Worker">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Repair">
+        <PropertyRef Name="fk_Worker_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transfer__fk_Sho__6477ECF3">
+    <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
+    <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shop">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transfer">
+        <PropertyRef Name="fk_Shop_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Worker__fk_User___656C112C">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Worker">
+        <PropertyRef Name="fk_User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PCPowerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrators" EntityType="Self.Administrator" />
+    <EntitySet Name="Builds" EntityType="Self.Build" />
+    <EntitySet Name="Chats" EntityType="Self.Chat" />
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Computers" EntityType="Self.Computer" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Parts" EntityType="Self.Part" />
+    <EntitySet Name="Receipts" EntityType="Self.Receipt" />
+    <EntitySet Name="Repairs" EntityType="Self.Repair" />
+    <EntitySet Name="Shops" EntityType="Self.Shop" />
+    <EntitySet Name="Transfers" EntityType="Self.Transfer" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+    <EntitySet Name="Workers" EntityType="Self.Worker" />
+    <AssociationSet Name="FK__Administr__fk_Us__4D94879B" Association="Self.FK__Administr__fk_Us__4D94879B">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Administrator" EntitySet="Administrators" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Build__fk_Comput__60A75C0F" Association="Self.FK__Build__fk_Comput__60A75C0F">
+      <End Role="Computer" EntitySet="Computers" />
+      <End Role="Build" EntitySet="Builds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Build__fk_Part_I__619B8048" Association="Self.FK__Build__fk_Part_I__619B8048">
+      <End Role="Part" EntitySet="Parts" />
+      <End Role="Build" EntitySet="Builds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Message__fk_Chat__5070F446" Association="Self.FK__Message__fk_Chat__5070F446">
+      <End Role="Chat" EntitySet="Chats" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Client__fk_User___4E88ABD4" Association="Self.FK__Client__fk_User___4E88ABD4">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Computer__fk_Use__5441852A" Association="Self.FK__Computer__fk_Use__5441852A">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Computer" EntitySet="Computers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Message__fk_Reci__52593CB8" Association="Self.FK__Message__fk_Reci__52593CB8">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Message__fk_Send__5165187F" Association="Self.FK__Message__fk_Send__5165187F">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__fk_Receip__5812160E" Association="Self.FK__Order__fk_Receip__5812160E">
+      <End Role="Receipt" EntitySet="Receipts" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Order__fk_Shop_I__571DF1D5" Association="Self.FK__Order__fk_Shop_I__571DF1D5">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Part__fk_Order_I__5CD6CB2B" Association="Self.FK__Part__fk_Order_I__5CD6CB2B">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Receipt__fk_Orde__5DCAEF64" Association="Self.FK__Receipt__fk_Orde__5DCAEF64">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Receipt" EntitySet="Receipts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Repair__fk_Order__628FA481" Association="Self.FK__Repair__fk_Order__628FA481">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Repair" EntitySet="Repairs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Part__fk_Transfe__5BE2A6F2" Association="Self.FK__Part__fk_Transfe__5BE2A6F2">
+      <End Role="Transfer" EntitySet="Transfers" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Part__fk_Warehou__5AEE82B9" Association="Self.FK__Part__fk_Warehou__5AEE82B9">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Part" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Repair__fk_Worke__6383C8BA" Association="Self.FK__Repair__fk_Worke__6383C8BA">
+      <End Role="Worker" EntitySet="Workers" />
+      <End Role="Repair" EntitySet="Repairs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transfer__fk_Sho__6477ECF3" Association="Self.FK__Transfer__fk_Sho__6477ECF3">
+      <End Role="Shop" EntitySet="Shops" />
+      <End Role="Transfer" EntitySet="Transfers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Worker__fk_User___656C112C" Association="Self.FK__Worker__fk_User___656C112C">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Worker" EntitySet="Workers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

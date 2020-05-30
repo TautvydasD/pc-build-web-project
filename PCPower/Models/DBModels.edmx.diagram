@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="824f33ce5b8f4cc49fc3381d6e1b59f7" Name="Diagram1" ZoomLevel="52">
+        <EntityTypeShape EntityType="PCPowerModel.Administrator" Width="1.5" PointX="13.625" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Build" Width="1.5" PointX="3.125" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Chat" Width="1.5" PointX="8.125" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Client" Width="1.5" PointX="13.625" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Computer" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Message" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Order" Width="1.5" PointX="17" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Part" Width="1.5" PointX="10.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Receipt" Width="1.5" PointX="16.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Repair" Width="1.5" PointX="13.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Shop" Width="1.5" PointX="14.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Transfer" Width="1.5" PointX="11.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.User" Width="1.5" PointX="11.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Warehouse" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCPowerModel.Worker" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="PCPowerModel.FK__Administr__fk_Us__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Build__fk_Comput__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Build__fk_Part_I__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Message__fk_Chat__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Client__fk_User___4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Computer__fk_Use__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Message__fk_Reci__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Message__fk_Send__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Order__fk_Receip__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Order__fk_Shop_I__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Part__fk_Order_I__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Receipt__fk_Orde__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Repair__fk_Order__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Part__fk_Transfe__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Part__fk_Warehou__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Repair__fk_Worke__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Transfer__fk_Sho__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="PCPowerModel.FK__Worker__fk_User___656C112C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

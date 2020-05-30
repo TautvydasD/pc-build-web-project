@@ -113,6 +113,10 @@ namespace PCPower.Controllers
         {
             return View();
         }
+        public ActionResult sendTelegramMessage() // same
+        {
+            return View();
+        }
 
     }
 }
