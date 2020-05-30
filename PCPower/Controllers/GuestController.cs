@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCPower.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,10 @@ namespace PCPower.Controllers
 {
     public class GuestController : Controller
     {
+
+
+        private PCPowerEntities db = new PCPowerEntities();
+
         //// GET: Guest
         //public ActionResult Index()
         //{
@@ -16,7 +21,7 @@ namespace PCPower.Controllers
 
         public ActionResult openParts()
         {
-            return View();
+            return View(db.Parts.ToList());
         }
         public ActionResult openRegistrationForm()
         {

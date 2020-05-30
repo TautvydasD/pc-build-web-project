@@ -77,3 +77,7 @@ D:\PC power\PCPower\projektavimas\PCPower\obj\Debug\PCPower.csproj.CoreCompileIn
 D:\PC power\PCPower\projektavimas\PCPower\obj\Debug\PCPower.csproj.CopyComplete
 D:\PC power\PCPower\projektavimas\PCPower\obj\Debug\PCPower.dll
 D:\PC power\PCPower\projektavimas\PCPower\obj\Debug\PCPower.pdb
+D:\PC power\PCPower\projektavimas\PCPower\bin\EntityFramework.dll
+D:\PC power\PCPower\projektavimas\PCPower\bin\EntityFramework.SqlServer.dll
+D:\PC power\PCPower\projektavimas\PCPower\bin\EntityFramework.xml
+D:\PC power\PCPower\projektavimas\PCPower\bin\EntityFramework.SqlServer.xml
