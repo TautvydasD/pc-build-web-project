@@ -179,6 +179,13 @@
     <Content Include="Views\Worker\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Guest\RegistrationForm.cshtml" />
+    <Content Include="Views\Shared\_WorkerLayout.cshtml" />
+    <Content Include="Views\Worker\ComputerList.cshtml" />
+    <Content Include="Views\Worker\RepairList.cshtml" />
+    <Content Include="Views\Worker\PartList.cshtml" />
+    <Content Include="Views\Shared\_ClientLayout.cshtml" />
+    <Content Include="Views\Client\OrderList.cshtml" />
+    <Content Include="Views\Client\RepairShow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

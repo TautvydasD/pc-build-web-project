@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_WorkerLayout.cshtml";
+    ViewBag.Title = "Repairs list";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<input type="button" value="Create repair" onclick="location.href='@Url.Action("Index", "Administrator")'" />
+<p>Reiks perkelti prie repair'o šitus tris mygtukus, kad paselectini ir atsiranda</p>
+<input type="button" value="Delete repair" onclick="location.href='@Url.Action("Index", "User")'" />
+<input type="button" value="Update repair" onclick="location.href='@Url.Action("Index", "Worker")'" />
+<input type="button" value="Send message" onclick="location.href='@Url.Action("Index", "Worker")'" />
