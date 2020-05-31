@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PCPower.Models;
 
 namespace PCPower.Controllers
 {
@@ -53,7 +54,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerComputersList()
         {
-            return View("ComputerList");
+            return View("ComputerList", db.Computers.ToList());
         }
         public ActionResult selectComputerOptions()
         {
@@ -77,7 +78,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerRepairsList()
         {
-            return View("RepairList");
+            return View("RepairList", db.Repairs.ToList());
         }
         public ActionResult selectRepairOptions()
         {
@@ -85,7 +86,7 @@ namespace PCPower.Controllers
         }
         public ActionResult selectCreateRepair()
         {
-            return View();
+            return View("RepairForm");
         }
         public ActionResult validateNewRepairData()
         {
@@ -118,6 +119,30 @@ namespace PCPower.Controllers
         public ActionResult sendTelegramMessage() // same
         {
             return View();
+        }
+
+        // GET: Repairs/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Repairs/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,Number,Status," +
+                                                   "DeviceID,fk_Order_Id,fk_Worker_Id")] Repair repair)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Repairs.Add(repair);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else return RedirectToAction("openWorkerRepairsList");
+
         }
 
     }
