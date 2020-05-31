@@ -48,7 +48,7 @@ namespace PCPower.Controllers
 
         public ActionResult openPartWindow()
         {
-            return View();
+            return View(db.Parts.ToList());
         }
         public ActionResult wantedSelect()
         {
@@ -80,6 +80,7 @@ namespace PCPower.Controllers
         }
         public ActionResult addParts()
         {
+            Console.WriteLine("Add");
             return View();
 
         }

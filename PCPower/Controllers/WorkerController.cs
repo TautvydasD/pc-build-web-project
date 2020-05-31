@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCPower.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace PCPower.Controllers
 {
     public class WorkerController : Controller
     {
+        private PCPowerEntities db = new PCPowerEntities();
         // GET: Worker
         public ActionResult Index()
         {
@@ -27,7 +29,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerPartsList()
         {
-            return View("PartList");
+            return View("PartList", db.Parts.ToList());
         }
         public ActionResult selectPartOptions()
         {
