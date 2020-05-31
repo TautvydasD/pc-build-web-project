@@ -41,16 +41,11 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "EditRepair", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Send message", "", new { id = item.Id })
             </td>
         </tr>
     }
 
 </table>
-
-<p>Reiks perkelti prie repair'o šitus tris mygtukus, kad paselectini ir atsiranda</p>
-<input type="button" value="Delete repair" onclick="location.href='@Url.Action("Index", "User")'" />
-<input type="button" value="Update repair" onclick="location.href='@Url.Action("Index", "Worker")'" />
-<input type="button" value="Send message" onclick="location.href='@Url.Action("Index", "Worker")'" />
