@@ -6,13 +6,13 @@
 }
 
 
-<h2>Personal info</h2>
-<div class="row">
-    <button>@Html.ActionLink("Order Parts", "openPartWindow") |
-    @Html.ActionLink("Order Repair", "openRepairForm") |
-    @Html.ActionLink("PC BuILDING", "openServiceBuilding");</button>
+<h2>Choose service</h2>
+
+<li>@Html.ActionLink("Order Parts", "getParts") </li> 
+<li> @Html.ActionLink("Order Repair", "openRepairForm") </li>
+<li>@Html.ActionLink("PC Building", "openServiceBuilding")</li>
     
-</div>
+
 
 @*@using (Html.BeginForm())
 {

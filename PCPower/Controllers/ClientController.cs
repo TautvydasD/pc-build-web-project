@@ -46,9 +46,18 @@ namespace PCPower.Controllers
             return View("ServiceForm");
         }
 
-        public ActionResult openPartWindow()
+        public ActionResult openPartWindow(int? id)
         {
-            return View("PartList", db.Parts.ToList());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Part part = db.Parts.Find(id);
+            if (part == null)
+            {
+                return HttpNotFound();
+            }
+            return View("PartDetails",part);
         }
         public ActionResult wantedSelect()
         {
@@ -195,7 +204,7 @@ namespace PCPower.Controllers
         }
         public ActionResult getParts()
         {
-            return View();
+            return View("PartList", db.Parts.ToList());
         }
         public ActionResult invokePurchase()
         {

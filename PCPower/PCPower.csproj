@@ -295,6 +295,7 @@
     <Content Include="Views\Client\repairForm.cshtml" />
     <Content Include="Views\Client\PartList.cshtml" />
     <Content Include="Views\Worker\RepairForm.cshtml" />
+    <Content Include="Views\Client\PartDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
