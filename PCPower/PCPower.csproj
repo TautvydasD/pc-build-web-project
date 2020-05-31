@@ -289,16 +289,11 @@
     <Content Include="Views\Client\OrderList.cshtml" />
     <Content Include="Views\Client\RepairShow.cshtml" />
     <Content Include="Views\Client\OrderForm.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Client\View.cshtml" />
     <Content Include="Views\Client\ServiceForm.cshtml" />
     <Content Include="Views\Client\PCBuildingForm.cshtml" />
     <Content Include="Views\Client\repairForm.cshtml" />
     <Content Include="Views\Client\PartList.cshtml" />
-=======
-    <Content Include="Views\Client\openPartWindow.cshtml" />
-    <Content Include="Views\Worker\openPartWindow.cshtml" />
->>>>>>> da4436a1989d1cbbbd9e3b5d28f5fc04db6562fa
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
