@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PCPower.Models;
 
 namespace PCPower.Controllers
 {
@@ -53,7 +54,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerComputersList()
         {
-            return View("ComputerList");
+            return View("ComputerList", db.Computers.ToList());
         }
         public ActionResult selectComputerOptions()
         {
@@ -77,7 +78,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerRepairsList()
         {
-            return View("RepairList");
+            return View("RepairList", db.Repairs.ToList());
         }
         public ActionResult selectRepairOptions()
         {
@@ -85,7 +86,7 @@ namespace PCPower.Controllers
         }
         public ActionResult selectCreateRepair()
         {
-            return View();
+            return View("RepairForm");
         }
         public ActionResult validateNewRepairData()
         {
