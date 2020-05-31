@@ -1,0 +1,10 @@
+﻿@{
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    ViewBag.Title = "Orders list";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Reiks perkelti prie orderio šitus du mygtukus, kad paselectini ir atsiranda</p>
+<input type="button" value="Update order" onclick="location.href='@Url.Action("Index", "User")'" />
+<input type="button" value="Delete order" onclick="location.href='@Url.Action("Index", "Worker")'" />

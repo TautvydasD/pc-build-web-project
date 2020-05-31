@@ -27,7 +27,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerPartsList()
         {
-            return View();
+            return View("PartList");
         }
         public ActionResult selectPartOptions()
         {
@@ -51,7 +51,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerComputersList()
         {
-            return View();
+            return View("ComputerList");
         }
         public ActionResult selectComputerOptions()
         {
@@ -75,7 +75,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openWorkerRepairsList()
         {
-            return View();
+            return View("RepairList");
         }
         public ActionResult selectRepairOptions()
         {

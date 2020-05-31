@@ -20,7 +20,7 @@ namespace PCPower.Controllers
         public ActionResult openRepair()
         {
             // openRepair() <- tokiu vardu viewsas turi but
-            return View();
+            return View("RepairShow");
         }
         public ActionResult formOrder()
         {
@@ -96,7 +96,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openOrders()
         {
-            return View();
+            return View("OrderList");
         }
         public ActionResult orderSelection()
         {

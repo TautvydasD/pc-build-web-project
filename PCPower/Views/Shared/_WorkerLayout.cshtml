@@ -16,18 +16,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("PC Power", "openParts", "Guest", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PC Power", "Index", "Worker", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("View Parts", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Send","sendTelegramMessage","Worker")</li>
+                    <li>@Html.ActionLink("View repairs list", "openWorkerRepairsList", "Worker")</li>
+                    <li>@Html.ActionLink("View parts list", "openWorkerPartsList", "Worker")</li>
+                    <li>@Html.ActionLink("View computers list", "openWorkerComputersList", "Worker")</li>
 
                     <select id="SelectRole">
                         <option>Admin</option>
-
                         <option>Client</option>
                         <option>Guest</option>
                         <option>Worker</option>
