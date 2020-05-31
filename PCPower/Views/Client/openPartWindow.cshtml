@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<PCPower.Models.Part>
 @{
-    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
     ViewBag.Title = "openParts";
 }
 
@@ -43,6 +43,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductionDate)
+            </td>
+
+            <td>
+                @Html.ActionLink("Add to order", "addParts")
             </td>
         </tr>
     }

@@ -48,7 +48,11 @@ namespace PCPower.Controllers
 
         public ActionResult openPartWindow()
         {
+<<<<<<< HEAD
             return View("PartList", db.Parts.ToList());
+=======
+            return View(db.Parts.ToList());
+>>>>>>> da4436a1989d1cbbbd9e3b5d28f5fc04db6562fa
         }
         public ActionResult wantedSelect()
         {
@@ -80,6 +84,7 @@ namespace PCPower.Controllers
         }
         public ActionResult addParts()
         {
+            Console.WriteLine("Add");
             return View();
 
         }

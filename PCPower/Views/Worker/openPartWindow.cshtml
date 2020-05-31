@@ -44,6 +44,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProductionDate)
             </td>
+
+            <td>
+                @Html.ActionLink("Add to order", "addParts")
+            </td>
         </tr>
     }
 
