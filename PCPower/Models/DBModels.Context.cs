@@ -22,7 +22,34 @@ namespace PCPower.Models
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<Order>()
+                .HasOptional(j => j.Receipts)
+                .WithMany()
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Order>()
+                .HasOptional(j => j.Shop)
+                .WithMany()
+                .WillCascadeOnDelete(true);
+
+
+            modelBuilder.Entity<Receipt>()
+                .HasKey(t => t.fk_Order_Id);
+
+            modelBuilder.Entity<Receipt>()
+                .HasOptional(j => j.Orders)
+                .WithRequired()
+                .WillCascadeOnDelete(true);
+ 
+            modelBuilder.Entity<Order>()
+                .HasOptional(j => j.Parts)
+                .WithMany()
+                .WillCascadeOnDelete(true);
+            modelBuilder.Entity<Order>()
+                .HasOptional(j => j.Repairs)
+                .WithMany()
+                .WillCascadeOnDelete(true);
+            base.OnModelCreating(modelBuilder);
+            
         }
     
         public virtual DbSet<Administrator> Administrators { get; set; }
