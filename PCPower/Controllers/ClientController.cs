@@ -128,42 +128,31 @@ namespace PCPower.Controllers
 
         //
         // GET: /Client/selectDeleteOrder/5
-        public ActionResult selectDeleteOrder(FormCollection fcNotUsed, int id = 0)
+        public ActionResult selectDeleteOrder(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Order order = db.Orders.Find(id);
             if (order == null)
             {
                 return HttpNotFound();
             }
+            return View(order);
+        }
+
+        //
+        // POST: /Client/selectDeleteOrder/5
+        [HttpPost, ActionName("selectDeleteOrder")]
+        [ValidateAntiForgeryToken]
+        public ActionResult checkAction(int id)
+        {
+            Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("openOrders");
         }
-        //public ActionResult selectDeleteOrder(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Order order = db.Orders.Find(id);
-        //    if (order == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(order);
-        //}
-
-        ////
-        //// POST: /Client/selectDeleteOrder/5
-        //[HttpPost, ActionName("selectDeleteOrder")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult checkAction(int id)
-        //{
-        //    Order order = db.Orders.Find(id);
-        //    //db.Orders.Remove(order);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         public ActionResult dataUpdateSubmit()
         {
