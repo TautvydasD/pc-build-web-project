@@ -7,11 +7,13 @@ using System.Web.Mvc;
 using PCPower.Models;
 using System.Net;
 using System.Data.Entity;
+using Telegram.Bot;
 
 namespace PCPower.Controllers
 {
     public class WorkerController : Controller
     {
+        private static readonly TelegramBotClient Bot = new TelegramBotClient("1074622530:AAGZTuwIoCXTvvvG7rktoTvFjNiAb_GMSnY");
         private PCPowerEntities db = new PCPowerEntities();
         // GET: Worker
         public ActionResult Index()
@@ -104,7 +106,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openRepairChatForm()
         {
-            return View();
+            return View("RepairMessage");
         }
         public ActionResult openUpdatedPartsList() //?? butu uzteke tiesiog upenPartsList
         {
@@ -118,9 +120,23 @@ namespace PCPower.Controllers
         {
             return View();
         }
-        public ActionResult sendTelegramMessage() // same
+        public ActionResult sendTelegramMessage(int? id) // same
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Repair rep = db.Repairs.Find(id);
+            if (rep == null)
+            {
+                return HttpNotFound();
+            }
+
+            String s = String.Format("Your repair status: Done\n Message: You can take your pc", rep.Status);
+            Bot.SendTextMessageAsync("770510839", s);
+            
+            return View("RepairList", db.Repairs.ToList());
         }
 
         // GET: Repairs/Create
