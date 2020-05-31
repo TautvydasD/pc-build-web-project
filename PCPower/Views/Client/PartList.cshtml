@@ -43,9 +43,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.CheckBox("isWanted", true)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
@@ -78,4 +75,4 @@
 
 </table>
 
-<button>@Html.ActionLink("Save Choice", "Edit")</button>
+<button>@Html.ActionLink("Buy", "Edit")</button>

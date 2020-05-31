@@ -9,6 +9,7 @@ using PCPower.Models;
 
 namespace PCPower.Controllers
 {
+
     public class ClientController : Controller
     {
         //return View() grazina viewsa toki koks funkcijos pavadinimas ty. 
