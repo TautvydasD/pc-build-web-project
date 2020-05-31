@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PCPower.Models;
+using System.Net;
+using System.Data.Entity;
 
 namespace PCPower.Controllers
 {
@@ -143,6 +145,59 @@ namespace PCPower.Controllers
             }
             else return RedirectToAction("openWorkerRepairsList");
 
+        }
+
+        public ActionResult EditRepair(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Repair repair = db.Repairs.Find(id);
+            if (repair == null)
+            {
+                return HttpNotFound();
+            }
+            //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
+            //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
+            //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
+            return View("RepairForm", repair);
+        }
+
+        public ActionResult EditPart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Part part = db.Parts.Find(id);
+            if (part == null)
+            {
+                return HttpNotFound();
+            }
+            //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
+            //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
+            //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
+            return View("PartForm", part);
+        }
+
+        // POST: Repairs/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Number,Machine_number")] Repair repair)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(repair).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("openWorkerRepairsList");
+            }
+            //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
+            //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
+            //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
+            return View(repair);
         }
 
     }
