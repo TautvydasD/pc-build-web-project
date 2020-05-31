@@ -1,10 +1,12 @@
 ﻿@model PCPower.Models.Repair
 @{
+    Layout = "~/Views/Shared/_WorkerLayout.cshtml";
     ViewBag.Title = "Repairs form";
 }
+
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Worker", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -13,17 +15,17 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.fk_Order_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fk_Order_Id, "Order ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.fk_Order_Id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.fk_Order_Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fk_Worker_Id, "fk_Worker_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fk_Worker_Id, "Worker ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("fk_Worker_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.fk_Worker_Id, new { @readonly = true, @Value = "1" })
                 @Html.ValidationMessageFor(model => model.fk_Worker_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -31,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Number, "Number", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Number", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -39,15 +41,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Status", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DeviceID, "DeviceID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DeviceID, "Device ID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("DeviceID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.EditorFor(model => model.DeviceID, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DeviceID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,7 +63,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "openWorkerRepairsList")
 </div>
 
 @section Scripts {
