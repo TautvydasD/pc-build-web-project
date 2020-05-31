@@ -43,12 +43,12 @@ namespace PCPower.Controllers
         public ActionResult openServiceWindow()
         {
             //openServiceWindow() <- tokiu vardu viewsas turi but
-            return View();
+            return View("ServiceForm");
         }
 
         public ActionResult openPartWindow()
         {
-            return View(db.Parts.ToList());
+            return View("PartList", db.Parts.ToList());
         }
         public ActionResult wantedSelect()
         {
@@ -56,11 +56,11 @@ namespace PCPower.Controllers
         }
         public ActionResult openServiceBuilding()
         {
-            return View();
+            return View("PCBuildingForm");
         }
         public ActionResult openRepairForm()
         {
-            return View();
+            return View("repairForm");
         }
         public ActionResult repair()
         {
@@ -129,32 +129,42 @@ namespace PCPower.Controllers
 
         //
         // GET: /Client/selectDeleteOrder/5
-        public ActionResult selectDeleteOrder(int? id)
+        //public ActionResult selectDeleteOrder(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Order order = db.Orders.Find(id);
+        //    if (order == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(order);
+        //}
+
+        ////
+        //// POST: /Client/selectDeleteOrder/5
+        //[HttpPost, ActionName("selectDeleteOrder")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult checkAction(int id)
+        //{
+        //    Order order = db.Orders.Find(id);
+        //    db.Orders.Remove(order);
+        //    db.SaveChanges();
+        //    return RedirectToAction("openOrders");
+        //}
+        public ActionResult selectDeleteOrder(FormCollection fcNotUsed, int id = 0)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
             Order order = db.Orders.Find(id);
-            if (order == null)
+            if(order == null)
             {
                 return HttpNotFound();
             }
-            return View(order);
-        }
-
-        //
-        // POST: /Client/selectDeleteOrder/5
-        [HttpPost, ActionName("selectDeleteOrder")]
-        [ValidateAntiForgeryToken]
-        public ActionResult checkAction(int id)
-        {
-            Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();
             return RedirectToAction("openOrders");
         }
-
         public ActionResult dataUpdateSubmit()
         {
             return View();

@@ -289,8 +289,11 @@
     <Content Include="Views\Client\OrderList.cshtml" />
     <Content Include="Views\Client\RepairShow.cshtml" />
     <Content Include="Views\Client\OrderForm.cshtml" />
-    <Content Include="Views\Client\openPartWindow.cshtml" />
-    <Content Include="Views\Worker\openPartWindow.cshtml" />
+    <Content Include="Views\Client\View.cshtml" />
+    <Content Include="Views\Client\ServiceForm.cshtml" />
+    <Content Include="Views\Client\PCBuildingForm.cshtml" />
+    <Content Include="Views\Client\repairForm.cshtml" />
+    <Content Include="Views\Client\PartList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
