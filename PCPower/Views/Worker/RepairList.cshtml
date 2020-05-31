@@ -1,11 +1,55 @@
-﻿@{
+﻿@model IEnumerable <PCPower.Models.Repair>
+@{
     Layout = "~/Views/Shared/_WorkerLayout.cshtml";
     ViewBag.Title = "Repairs list";
 }
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<input type="button" value="Create repair" onclick="location.href='@Url.Action("Index", "Administrator")'" />
+<input type="button" value="Create repair" onclick="location.href='@Url.Action("selectCreateRepair", "Worker")'" />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_Order_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_Worker_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fk_Order_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fk_Worker_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
 <p>Reiks perkelti prie repair'o šitus tris mygtukus, kad paselectini ir atsiranda</p>
 <input type="button" value="Delete repair" onclick="location.href='@Url.Action("Index", "User")'" />
 <input type="button" value="Update repair" onclick="location.href='@Url.Action("Index", "Worker")'" />
