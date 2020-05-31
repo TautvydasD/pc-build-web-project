@@ -25,7 +25,7 @@ namespace PCPower.Controllers
         public ActionResult openRepair()
         {
             // openRepair() <- tokiu vardu viewsas turi but
-            return View("RepairShow");
+            return View("RepairList", db.Repairs.ToList());
         }
         public ActionResult formOrder()
         {
@@ -67,9 +67,18 @@ namespace PCPower.Controllers
         {
             return View("PCBuildingForm");
         }
-        public ActionResult openRepairForm()
+        public ActionResult openRepairForm(int? id)
         {
-            return View("repairForm");
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Repair rep = db.Repairs.Find(id);
+            if (rep == null)
+            {
+                return HttpNotFound();
+            }
+            return View("RepairShow", rep);
         }
         public ActionResult repair()
         {
