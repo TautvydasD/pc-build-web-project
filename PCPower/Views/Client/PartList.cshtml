@@ -1,0 +1,81 @@
+﻿@model IEnumerable<PCPower.Models.Part>
+
+@{
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    ViewBag.Title = "PartList";
+}
+
+<h2>PartList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Wanted Parts</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transfer.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Warehouse.PartsCount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.CheckBox("isWanted", true)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transfer.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warehouse.PartsCount)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "openPartWindow", new { id=item.Id }) 
+        </td>
+    </tr>
+
+}
+
+</table>
+
+<button>@Html.ActionLink("Save Choice", "Edit")</button>

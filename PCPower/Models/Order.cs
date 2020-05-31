@@ -20,13 +20,16 @@ namespace PCPower.Models
             this.Parts = new HashSet<Part>();
             this.Receipts = new HashSet<Receipt>();
             this.Repairs = new HashSet<Repair>();
+            this.isFinished = false;
         }
     
         public int Id { get; set; }
         public int fk_Shop_Id { get; set; }
         public Nullable<int> fk_Receipt_Id { get; set; }
         public int fk_Client_Id { get; set; }
-    
+
+        public bool isFinished { get; set; }
+
         public virtual Receipt Receipt { get; set; }
         public virtual Shop Shop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

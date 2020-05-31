@@ -11,7 +11,8 @@ namespace PCPower.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web.Mvc;
+
     public partial class Repair
     {
         public int Id { get; set; }
@@ -23,5 +24,7 @@ namespace PCPower.Models
     
         public virtual Order Order { get; set; }
         public virtual Worker Worker { get; set; }
+
+        //public RepairState state { get; set; }
     }
 }

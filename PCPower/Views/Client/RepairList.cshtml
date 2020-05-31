@@ -1,0 +1,41 @@
+﻿@model IEnumerable <PCPower.Models.Repair>
+@{
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+    ViewBag.Title = "Repairs list";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_Order_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fk_Worker_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fk_Order_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fk_Worker_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.ActionLink("Status", "openRepairForm", new { id = item.Id }) 
+            </td>
+        </tr>
+    }
+
+</table>

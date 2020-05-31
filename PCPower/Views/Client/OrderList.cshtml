@@ -1,10 +1,111 @@
-﻿@{
+﻿@model IEnumerable<PCPower.Models.Order>
+@{
     Layout = "~/Views/Shared/_ClientLayout.cshtml";
-    ViewBag.Title = "Orders list";
+    ViewBag.Title = "OrderList";
 }
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Reiks perkelti prie orderio šitus du mygtukus, kad paselectini ir atsiranda</p>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#buttonID").click(function (event) {
+                event.preventDefault();
+                $('<div title="Confirm Box"></div>').dialog({
+                    open: function (event, ui) {
+                        $(this).html("Yes or No question?");
+                    },
+                    close: function () {
+                        $(this).remove();
+                    },
+                    resizable: false,
+                    height: 140,
+                    modal: true,
+                    buttons: {
+                        'Yes': function () {
+                            $(this).dialog('close');
+                            $.post('url/theValueYouWantToPass');
+
+                        },
+                        'No': function () {
+                            $(this).dialog('close');
+                            $.post('url/theOtherValueYouWantToPAss');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<div class="row">
+    <div>
+        <table>
+
+            <th>
+                ID
+            </th>
+            <th>
+                Receipt ID
+            </th>
+            <th>
+                Shop Name
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th>
+                Activities
+            </th>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id);
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Receipt.Id);
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Shop.Name);
+                    </td>
+                    <td>
+                        @{ 
+                            string orderStatus = item.isFinished.ToString();
+                        }
+                        @Html.DisplayFor(modelItem => orderStatus);
+                    </td>
+
+
+                    <td id="showHideMe">
+                        @Html.ActionLink("Edit", "selectUpdateOrder", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "selectDeleteOrder", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this order?');" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+
+@*<p>Reiks perkelti prie orderio šitus du mygtukus, kad paselectini ir atsiranda</p>
 <input type="button" value="Update order" onclick="location.href='@Url.Action("Index", "User")'" />
-<input type="button" value="Delete order" onclick="location.href='@Url.Action("Index", "Worker")'" />
+<input type="button" value="Delete order" onclick="location.href='@Url.Action("Index", "Worker")'" />*@
