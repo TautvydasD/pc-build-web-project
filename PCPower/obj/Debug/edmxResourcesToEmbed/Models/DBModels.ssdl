@@ -83,7 +83,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Number" Type="nchar" MaxLength="10" />
     <Property Name="Status" Type="nvarchar" MaxLength="50" />
     <Property Name="DeviceID" Type="nchar" MaxLength="10" Nullable="false" />
@@ -94,7 +94,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
     <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Adress" Type="varchar" MaxLength="50" />
     <Property Name="Post" Type="nchar" MaxLength="10" />

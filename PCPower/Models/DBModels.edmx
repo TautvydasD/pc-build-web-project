@@ -88,7 +88,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="nchar" MaxLength="10" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="DeviceID" Type="nchar" MaxLength="10" Nullable="false" />
@@ -99,7 +99,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="None" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Adress" Type="varchar" MaxLength="50" />
           <Property Name="Post" Type="nchar" MaxLength="10" />
@@ -558,7 +558,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DeviceID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -571,7 +571,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Post" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />

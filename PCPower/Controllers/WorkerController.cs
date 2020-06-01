@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using PCPower.Models;
 using System.Net;
 using System.Data.Entity;
+using System.Diagnostics;
 using Telegram.Bot;
 
 namespace PCPower.Controllers
@@ -92,11 +93,11 @@ namespace PCPower.Controllers
         {
             return View("RepairForm");
         }
-        public ActionResult validateNewRepairData()
+        public ActionResult selectUpdateRepair(int id)
         {
-            return View();
+            return View("RepairForm", db.Repairs.Find(id));
         }
-        public ActionResult selectUpdateRepair()
+        public ActionResult validateNewRepairData()
         {
             return View();
         }
@@ -129,93 +130,71 @@ namespace PCPower.Controllers
             return View("RepairList", db.Repairs.ToList());
         }
 
-        //public ActionResult sendTelegramMessage() // same
-        //{
-            
-
-        //    string message = String.Format("{0}", Request.Form["message"]);
-
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-
-        //    Repair rep = db.Repairs.Find(id);
-        //    if (rep == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    String s = String.Format("Your repair status: Done\n Message: You can take your pc", rep.Status);
-        //    Bot.SendTextMessageAsync("770510839", s);
-            
-        //    return View("RepairList", db.Repairs.ToList());
-        //}
-
-        // GET: Repairs/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: Repairs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Number,Status," +
-                                                   "DeviceID,fk_Order_Id,fk_Worker_Id")] Repair repair)
+        public ActionResult CreateEdit(Repair repair)
         {
             if (ModelState.IsValid)
             {
-                db.Repairs.Add(repair);
+                Debug.WriteLine(repair.Id);
+                if (repair.Id <= 0)
+                {
+                    db.Repairs.Add(repair);
+                }
+                else
+                {
+                    db.Entry(repair).State = EntityState.Modified;
+                }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("openWorkerRepairsList");
             }
-            else return RedirectToAction("openWorkerRepairsList");
 
+            return View(repair);
         }
 
-        public ActionResult EditRepair(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Repair repair = db.Repairs.Find(id);
-            if (repair == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
-            //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
-            //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
-            return View("RepairForm", repair);
-        }
+        //public ActionResult EditRepair(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Repair repair = db.Repairs.Find(id);
+        //    if (repair == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
+        //    //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
+        //    //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
+        //    return View("RepairForm", repair);
+        //}
 
-        public ActionResult EditPart(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Part part = db.Parts.Find(id);
-            if (part == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
-            //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
-            //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
-            return View("PartForm", part);
-        }
+        //public ActionResult EditPart(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Part part = db.Parts.Find(id);
+        //    if (part == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //ViewBag.fk_Client_Id = new SelectList(db.Clients, "Id", "User.Username", repair.fk_Client_Id);
+        //    //ViewBag.fk_Shop_Id = new SelectList(db.Shops, "Id", "Name", repair.fk_Shop_Id);
+        //    //ViewBag.fk_Receipt_Id = new SelectList(db.Receipts, "Id", "Id", repair.fk_Receipt_Id);
+        //    return View("PartForm", part);
+        //}
 
         // POST: Repairs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Number,Machine_number")] Repair repair)
+        public ActionResult Edit([Bind(Include = "Number,Status,DeviceID,fk_Order_Id,fk_Worker_Id")]  Repair repair)
         {
             if (ModelState.IsValid)
             {
