@@ -120,24 +120,37 @@ namespace PCPower.Controllers
         {
             return View();
         }
-        public ActionResult sendTelegramMessage(int? id) // same
+
+        [HttpPost]
+        public ActionResult sendTelegramMessage(int? id, int? userId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
-            Repair rep = db.Repairs.Find(id);
-            if (rep == null)
-            {
-                return HttpNotFound();
-            }
 
-            String s = String.Format("Your repair status: Done\n Message: You can take your pc", rep.Status);
-            Bot.SendTextMessageAsync("770510839", s);
-            
             return View("RepairList", db.Repairs.ToList());
         }
+
+        //public ActionResult sendTelegramMessage() // same
+        //{
+            
+
+        //    string message = String.Format("{0}", Request.Form["message"]);
+
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+
+        //    Repair rep = db.Repairs.Find(id);
+        //    if (rep == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    String s = String.Format("Your repair status: Done\n Message: You can take your pc", rep.Status);
+        //    Bot.SendTextMessageAsync("770510839", s);
+            
+        //    return View("RepairList", db.Repairs.ToList());
+        //}
 
         // GET: Repairs/Create
         public ActionResult Create()
