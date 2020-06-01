@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditRepair", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "selectUpdateRepair", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
                 @Html.ActionLink("Send message", "", new { id = item.Id })
             </td>
