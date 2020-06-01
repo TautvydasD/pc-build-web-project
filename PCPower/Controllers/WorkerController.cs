@@ -8,11 +8,13 @@ using PCPower.Models;
 using System.Net;
 using System.Data.Entity;
 using System.Diagnostics;
+using Telegram.Bot;
 
 namespace PCPower.Controllers
 {
     public class WorkerController : Controller
     {
+        private static readonly TelegramBotClient Bot = new TelegramBotClient("1074622530:AAGZTuwIoCXTvvvG7rktoTvFjNiAb_GMSnY");
         private PCPowerEntities db = new PCPowerEntities();
         // GET: Worker
         public ActionResult Index()
@@ -105,7 +107,7 @@ namespace PCPower.Controllers
         }
         public ActionResult openRepairChatForm()
         {
-            return View();
+            return View("RepairMessage");
         }
         public ActionResult openUpdatedPartsList() //?? butu uzteke tiesiog upenPartsList
         {
@@ -119,9 +121,13 @@ namespace PCPower.Controllers
         {
             return View();
         }
-        public ActionResult sendTelegramMessage() // same
+
+        [HttpPost]
+        public ActionResult sendTelegramMessage(int? id, int? userId)
         {
-            return View();
+
+
+            return View("RepairList", db.Repairs.ToList());
         }
 
         // POST: Repairs/Create

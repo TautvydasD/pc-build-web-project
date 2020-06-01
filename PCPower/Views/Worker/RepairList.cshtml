@@ -44,6 +44,8 @@
                 @Html.ActionLink("Edit", "selectUpdateRepair", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
                 @Html.ActionLink("Send message", "", new { id = item.Id })
+                @* @Html.ActionLink("Send message", "sendTelegramMessage", new { id = item.Id })
+                @Html.ActionLink("Send message", "openRepairChatForm", new { id = item.Id, userId = }) *@
             </td>
         </tr>
     }

@@ -1,0 +1,26 @@
+﻿@model PCPower.Models.Repair
+@{
+    ViewBag.Title = "View";
+}
+<h2>View</h2>
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        <label for="number">Number:</label>
+        <input type="text" id="number" name="number"><br><br>
+        <label for="message">Text:</label>
+        <input type="text" id="message" name="message"><br><br>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" onclick="sendTelegramMessage" />
+            </div>
+        </div>
+    </div>
+}
+<script>function myFunction() {
+        alert("Message sent");
+    }</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
