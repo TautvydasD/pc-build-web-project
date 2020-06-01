@@ -105,27 +105,58 @@ namespace PCPower.Controllers
         {
             return View();
         }
-        public ActionResult openRepairChatForm()
+        public ActionResult openRepairChatForm(int? id)
         {
-            return View("RepairMessage");
+            Repair rep = db.Repairs.Find(id);
+            if (rep == null)
+            {
+                return HttpNotFound();
+            }
+            return View("RepairMessage",rep);
         }
-        public ActionResult openUpdatedPartsList() //?? butu uzteke tiesiog upenPartsList
+        public ActionResult openUpdatedPartsList() 
         {
             return View();
         }
-        public ActionResult openUpdatedRepairsList() // same
+        public ActionResult openUpdatedRepairsList()
         {
             return View();
         }
-        public ActionResult openUpdatedComputersList() // same
+        public ActionResult openUpdatedComputersList()
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult sendTelegramMessage(int? id, int? userId)
+        public ActionResult sendTelegramMessage(int? id)
         {
+            Repair rep = db.Repairs.Find(id);
+            if (rep == null)
+            {
+                return HttpNotFound();
+            }
 
+            Order ord = db.Orders.Find(rep.fk_Order_Id);
+            if (ord == null)
+            {
+                return HttpNotFound();
+            }
+
+            Client cln = db.Clients.Find(ord.fk_Client_Id);
+            if (cln == null)
+            {
+                return HttpNotFound();
+            }
+
+            User usr = db.Users.Find(cln.fk_User_Id);
+            if (usr == null)
+            {
+                return HttpNotFound();
+            }
+
+            String s = String.Format("Your repair({0}) status: {1}\nCollect your stuff at:{2}", int.Parse(rep.Number), rep.Status, ord.Shop.Adress);
+            Bot.SendTextMessageAsync("770510839", s);
+
+            //770510839
 
             return View("RepairList", db.Repairs.ToList());
         }
