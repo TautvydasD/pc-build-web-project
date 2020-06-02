@@ -302,6 +302,7 @@
     <Content Include="Views\Worker\PartForm.cshtml" />
     <Content Include="Views\Client\RepairList.cshtml" />
     <Content Include="Views\Worker\RepairMessage.cshtml" />
+    <Content Include="Views\Worker\RepairDelete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -248,4 +248,5 @@ D:\Studies\6 Semestras\Projektavimas\PCPower\PCPower\obj\Debug\PCPower.dll
 D:\Studies\6 Semestras\Projektavimas\PCPower\PCPower\obj\Debug\PCPower.pdb
 D:\PC power\PCPower\projektavimas\PCPower\bin\Telegram.Bot.dll
 D:\PC power\PCPower\projektavimas\PCPower\bin\Telegram.Bot.xml
-D:\PC power\PCPower\projektavimas\PCPower\obj\Debug\PCPower.csprojAssemblyReference.cache
+C:\Users\aritre\Documents\projektavimas\PCPower\bin\Telegram.Bot.dll
+C:\Users\aritre\Documents\projektavimas\PCPower\bin\Telegram.Bot.xml
