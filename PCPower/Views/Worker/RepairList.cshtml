@@ -4,7 +4,10 @@
     ViewBag.Title = "Repairs list";
 }
 <h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
+<div class="text-danger">
+    <h3>@ViewBag.Message</h3>
+    <p>@TempData["ConfirmMessage"]</p>
+</div>
 
 <input type="button" value="Create repair" onclick="location.href='@Url.Action("selectCreateRepair", "Worker")'" />
 
@@ -42,7 +45,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "selectUpdateRepair", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "selectDeleteRepair", new { id = item.Id }) |
                 @Html.ActionLink("Send message", "", new { id = item.Id })
                 @* @Html.ActionLink("Send message", "sendTelegramMessage", new { id = item.Id })
                 @Html.ActionLink("Send message", "openRepairChatForm", new { id = item.Id, userId = }) *@
